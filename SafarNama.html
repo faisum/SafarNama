@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafarNama | Explore the World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(to right, #0c3c78, #1358a0);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #1358a0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background-color: #0c3c78;
+    }
+
+    .hero {
+      background-image: url('https://source.unsplash.com/1600x600/?travel');
+      height: 400px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 40px;
+      left: 30px;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 300px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .reviews, .blog {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
+    }
+
+    form input, form select, form textarea, form button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+    }
+
+    form button {
+      background-color: #0c3c78;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #1358a0;
+    }
+
+    footer {
+      background-color: #0c3c78;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media screen and (max-width: 600px) {
+      .hero-text {
+        font-size: 16px;
+        left: 10px;
+        right: 10px;
+      }
+
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SafarNama</h1>
+    <p>Your Story Begins Here</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#booking">Booking</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="hero" id="home">
+    <div class="hero-text">
+      <h2>Explore the World with SafarNama</h2>
+      <p>Plan your perfect getaway today.</p>
+    </div>
+  </div>
+
+  <!-- Gallery Section -->
+  <section class="section" id="gallery">
+    <h2>Popular Destinations</h2>
+    <div class="gallery">
+      <img src="https://balidave.com/wp-content/uploads/2022/11/best-hotel-bali.jpeg" alt="Bali">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPK7gzVvAp5IQtgW5OUuTUDyfVZSMU5RvxKQ&s" alt="Paris">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8T65Uo1laywFZIqKM3sspog91cu5LF-fT8g&s" alt="Tokyo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReEmmRcmdme7gPE6ytqhQALAU7nHdKYyc0nXpjnsCqAD4W7zsZSunxgLqRYT1t27XENb8&usqp=CAU" alt="Egypt">
+    </div>
+  </section>
+
+  <!-- Booking Section -->
+  <section class="section" id="booking">
+    <h2>Book Your Trip</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <select required>
+        <option value="">Select Destination</option>
+        <option value="paris">Paris</option>
+        <option value="bali">Bali</option>
+        <option value="tokyo">Tokyo</option>
+        <option value="egypt">Egypt</option>
+      </select>
+      <input type="date" required>
+      <textarea rows="4" placeholder="Special requests (optional)"></textarea>
+      <button type="submit">Book Now</button>
+    </form>
+  </section>
+
+  <!-- Reviews Section -->
+  <section class="section" id="reviews">
+    <h2>Traveler Reviews</h2>
+    <div class="reviews">
+      <div class="card">
+        <p>"SafarNama made my honeymoon in Bali unforgettable. Great service!"</p>
+        <strong>- Ayesha K.</strong>
+      </div>
+      <div class="card">
+        <p>"Easy booking and amazing destinations. Highly recommend!"</p>
+        <strong>- Raj M.</strong>
+      </div>
+      <div class="card">
+        <p>"Loved the travel guides and recommendations. Very helpful!"</p>
+        <strong>- Sara P.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section class="section" id="blog">
+    <h2>Travel Stories</h2>
+    <div class="blog">
+      <div class="card">
+        <h3>Top 5 Budget-Friendly Destinations</h3>
+        <p>Looking for adventure without breaking the bank? Here are our top picks...</p>
+      </div>
+      <div class="card">
+        <h3>Solo Travel: What You Should Know</h3>
+        <p>Planning to travel alone? Here’s how to make it safe and enjoyable.</p>
+      </div>
+      <div class="card">
+        <h3>Must-Have Apps for Travelers</h3>
+        <p>From maps to translators, these apps will make your journey smoother.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SafarNama. All rights reserved.</p>
+    <p>Email: support@safarnama.com</p>
+  </footer>
+
+</body>
+</html>
