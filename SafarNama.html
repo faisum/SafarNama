@@ -6,43 +6,38 @@
   <title>SafarNama | Explore the World</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
+    /* ... your existing styles ... */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f4f4f4;
       color: #333;
       scroll-behavior: smooth;
     }
-
     header {
       background: linear-gradient(to right, #0c3c78, #1358a0);
       color: white;
       padding: 20px;
       text-align: center;
     }
-
     nav {
       display: flex;
       justify-content: center;
       background-color: #1358a0;
       flex-wrap: wrap;
     }
-
     nav a {
       color: white;
       padding: 14px 20px;
       text-decoration: none;
     }
-
     nav a:hover {
       background-color: #0c3c78;
     }
-
     .hero {
       background-image: url('https://source.unsplash.com/1600x600/?travel');
       height: 400px;
@@ -50,7 +45,6 @@
       background-position: center;
       position: relative;
     }
-
     .hero-text {
       position: absolute;
       bottom: 40px;
@@ -61,52 +55,43 @@
       border-radius: 10px;
       animation: fadeIn 2s ease;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .section {
       padding: 40px 20px;
       max-width: 1200px;
       margin: auto;
     }
-
     .section h2 {
       text-align: center;
       margin-bottom: 30px;
     }
-
     .gallery {
       display: flex;
       overflow-x: auto;
       gap: 20px;
     }
-
     .gallery img {
       width: 300px;
       border-radius: 10px;
       transition: transform 0.3s;
     }
-
     .gallery img:hover {
       transform: scale(1.05);
     }
-
     .reviews, .blog {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
     }
-
     .card {
       background: white;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-
     form {
       background: white;
       padding: 20px;
@@ -115,7 +100,6 @@
       max-width: 500px;
       margin: auto;
     }
-
     form input, form select, form textarea, form button {
       width: 100%;
       padding: 10px;
@@ -125,32 +109,45 @@
       border-radius: 5px;
       font-family: inherit;
     }
-
     form button {
       background-color: #0c3c78;
       color: white;
       border: none;
       cursor: pointer;
     }
-
     form button:hover {
       background-color: #1358a0;
     }
-
+    /* Map section styling */
+    #map {
+      height: 400px;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-top: 40px;
+    }
+    #mapType {
+      margin: 20px auto 40px auto;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-family: inherit;
+      cursor: pointer;
+      width: 200px;
+      display: block;
+    }
     footer {
       background-color: #0c3c78;
       color: white;
       text-align: center;
       padding: 20px;
     }
-
     @media screen and (max-width: 600px) {
       .hero-text {
         font-size: 16px;
         left: 10px;
         right: 10px;
       }
-
       .gallery {
         flex-direction: column;
         align-items: center;
@@ -172,6 +169,7 @@
     <a href="#reviews">Reviews</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
+    <a href="#mapSection">Map</a>
   </nav>
 
   <div class="hero" id="home">
@@ -260,10 +258,95 @@
     </form>
   </section>
 
+  <!-- Map Section -->
+  <section class="section" id="mapSection">
+    <h2>Explore Our Destinations on the Map</h2>
+    <div id="map"></div>
+    <select id="mapType" aria-label="Select Map Type">
+      <option value="roadmap">Roadmap</option>
+      <option value="satellite">Satellite</option>
+      <option value="hybrid">Hybrid</option>
+      <option value="terrain">Terrain</option>
+    </select>
+  </section>
+
   <footer>
     <p>&copy; 2025 SafarNama. All rights reserved.</p>
     <p>Email: support@safarnama.com</p>
   </footer>
 
+  <script>
+    let map;
+    function initMap() {
+      const center = { lat: 20.0, lng: 10.0 }; // Rough center between the destinations
+
+      map = new google.maps.Map(document.getElementById("map"), {
+        center,
+        zoom: 2,
+        mapTypeId: 'roadmap',
+      });
+
+      // Destination data with lat,lng and info
+      const destinations = [
+        {
+          name: "Bali",
+          position: { lat: -8.3405, lng: 115.0920 },
+          info: "<h3>Bali, Indonesia</h3><p>Beautiful island known for its forested volcanic mountains, iconic rice paddies, beaches and coral reefs.</p>"
+        },
+        {
+          name: "Paris",
+          position: { lat: 48.8566, lng: 2.3522 },
+          info: "<h3>Paris, France</h3><p>The City of Light, famous for the Eiffel Tower, art museums, and rich history.</p>"
+        },
+        {
+          name: "Tokyo",
+          position: { lat: 35.6762, lng: 139.6503 },
+          info: "<h3>Tokyo, Japan</h3><p>A bustling metropolis blending the ultramodern and the traditional, from neon-lit skyscrapers to historic temples.</p>"
+        },
+        {
+          name: "Egypt",
+          position: { lat: 26.8206, lng: 30.8025 },
+          info: "<h3>Egypt</h3><p>Home to ancient monuments like the Pyramids of Giza and the Nile River.</p>"
+        }
+      ];
+
+      // Create markers and info windows
+      destinations.forEach(dest => {
+        const marker = new google.maps.Marker({
+          position: dest.position,
+          map,
+          title: dest.name,
+        });
+
+        const infoWindow = new google.maps.InfoWindow({
+          content: dest.info
+        });
+
+        marker.addListener("click", () => {
+          infoWindow.open(map, marker);
+        });
+      });
+
+      // Map type dropdown listener
+      const mapTypeSelect = document.getElementById("mapType");
+      mapTypeSelect.addEventListener("change", () => {
+        map.setMapTypeId(mapTypeSelect.value);
+      });
+    }
+  </script>
+
+  <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </body>
 </html>
+
+
+
+
+/*
+What you need to do:
+
+Replace YOUR_API_KEY in the Google Maps script tag with your actual Google Maps JavaScript API key.
+
+Save and open the file in a browser.
+*/
